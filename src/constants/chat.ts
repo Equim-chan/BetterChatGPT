@@ -20,9 +20,7 @@ const dateString =
 // default system message obtained using the following method: https://twitter.com/DeminDimin/status/1619935545144279040
 export const _defaultSystemMessage =
   import.meta.env.VITE_DEFAULT_SYSTEM_MESSAGE ??
-  `You are ChatGPT, a large language model trained by OpenAI.
-Carefully heed the user's instructions. 
-Respond using Markdown.`;
+  'You are a helpful assistant.';
 
 export const modelOptions: ModelOptions[] = [
   'gpt-3.5-turbo',
@@ -37,13 +35,14 @@ export const modelOptions: ModelOptions[] = [
   'gpt-4-turbo-2024-04-09',
   'gpt-4o',
   'gpt-4o-2024-05-13',
+  'gpt-4o-mini',
   // 'gpt-3.5-turbo-0301',
   // 'gpt-4-0314',
   // 'gpt-4-32k-0314',
 ];
 
 export const defaultApiVersion = '2024-04-01-preview';
-export const defaultModel = 'gpt-3.5-turbo';
+export const defaultModel = 'gpt-4o';
 
 export const modelMaxToken: { [key: string]: number } = {
   'gpt-3.5-turbo': 4096,
@@ -65,6 +64,7 @@ export const modelMaxToken: { [key: string]: number } = {
   'gpt-4-turbo-2024-04-09': 128000,
   'gpt-4o': 128000,
   'gpt-4o-2024-05-13': 128000,
+  'gpt-4o-mini': 128000,
 };
 
 export const modelCost: ModelCost = {
@@ -144,16 +144,20 @@ export const modelCost: ModelCost = {
     prompt: { price: 0.005, unit: 1000 },
     completion: { price: 0.015, unit: 1000 },
   },
+  'gpt-4o-mini': {
+    prompt: { price: 0.15, unit: 1000000 },
+    completion: { price: 0.6, unit: 1000000 },
+  },
 };
 
-export const defaultUserMaxToken = 4000;
+export const defaultUserMaxToken = 128000;
 
 export const _defaultChatConfig: ConfigInterface = {
   model: defaultModel,
   max_tokens: defaultUserMaxToken,
-  temperature: 1,
+  temperature: 0.7,
   presence_penalty: 0,
-  top_p: 1,
+  top_p: 0.95,
   frequency_penalty: 0,
 };
 
@@ -221,6 +225,7 @@ export const codeLanguageSubset = [
 ];
 
 export const modelTypes: { [key: string]: string } = {
+  'gpt-4o-mini': 'image',
   'gpt-4o': 'image',
   'gpt-4o-2024-05-13': 'image',
   'gpt-4-vision-preview': 'image',

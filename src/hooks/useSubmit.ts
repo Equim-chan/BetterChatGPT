@@ -221,7 +221,7 @@ const useSubmit = () => {
 
         // update tokens used for generating title
         if (countTotalTokens) {
-          const model = _defaultChatConfig.model;
+          const model = 'gpt-4o-mini';
           updateTotalTokenUsed(model, [message], {
             role: 'assistant',
             content: [{ type: 'text', text: title } as TextContentInterface],
