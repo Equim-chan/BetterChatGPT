@@ -134,7 +134,7 @@ const ContentView = memo(
                 p,
               }}
             >
-              {(content[0] as TextContentInterface).text}
+              {(content[0] as TextContentInterface).text.replace(/\\\[/g, '$$').replace(/\\\]/g, '$$').replace(/\\\(/g, '$').replace(/\\\)/g, '$')}
             </ReactMarkdown>
           ) : (
             <span className='whitespace-pre-wrap'>
